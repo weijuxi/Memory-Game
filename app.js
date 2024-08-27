@@ -71,8 +71,7 @@ game.appendChild(grid);
 // });
 
 
-// foreach card in gamegrid
-// same as above
+// foreach card in grid
 gameGrid.forEach(item => {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -109,6 +108,7 @@ const reset = () => {
     firstGuess = '';
     secondGuess = '';
     count = 0;
+    previousTarget = null;
 
     //remove selected class from selected cards
     let selected = document.querySelectorAll('.selected');
