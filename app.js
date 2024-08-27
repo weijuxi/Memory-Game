@@ -78,10 +78,21 @@ gameGrid.forEach(item => {
     card.classList.add('card');
     card.dataset.name = item.name;
 
+
+    //Add front of card
+    const front = document.createElement('div');
+    front.classList.add('front');
+
+
     //Add back of card
+    const back = document.createElement('div');
+    back.classList.add('back');
     card.style.backgroundImage = `url(${item.img})`;
 
+
     grid.appendChild(card);
+    card.appendChild(front);
+    card.appendChild(back);
 });
 
 
