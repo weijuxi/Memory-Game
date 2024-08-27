@@ -29,22 +29,46 @@ body {
 
 
 .card {
-    width: 100px;
-    height: 100px;
+    position: relative;
     background-color: #f0f0f0;
     margin: 5px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
-}
-
-.selected {
-    border: 2px solid blueviolet;
-}
-
-
-.match {
-    border: 4px solid black;
-    /* Make image disappear */
-    opacity: 0;
-}
+    transition: all .4s linear;
+    transform-style: preserve-3d;
+  }
+  
+  .card,
+  .back,
+  .front {
+    height: 100px;
+    width: 100px;
+  }
+  
+  .back,
+  .front {
+    position: absolute;
+    backface-visibility: hidden;
+  }
+  
+  .front {
+    
+    background: #6589F9;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+    background-color: #6589F9;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .selected {
+    transform: rotateY(180deg);
+  }
+  
+  .match .front {
+    background: #6589F9 !important;
+  }
