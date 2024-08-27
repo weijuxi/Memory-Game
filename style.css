@@ -1,8 +1,8 @@
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -15,71 +15,25 @@ body {
     color: #333;
 }
 
-.game {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 10px; /* Space between card */
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.controls {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.stats {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.moves, .timer {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-.instructions {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-}
-
-.instructions p {
-    margin-bottom: 10px;
-}
-
-.instructions p a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.instructions p a:hover {
-    text-decoration: underline;
-}
-
-.hidden {
-    visibility: hidden;
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 }
