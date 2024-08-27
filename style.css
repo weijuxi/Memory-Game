@@ -37,3 +37,14 @@ body {
     background-position: center center;
     background-size: contain;
 }
+
+.selected {
+    border: 2px solid blueviolet;
+}
+
+
+.match {
+    border: 4px solid black;
+    /* Make image disappear */
+    opacity: 0;
+  }
