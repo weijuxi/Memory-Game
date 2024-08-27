@@ -133,23 +133,23 @@ grid.addEventListener('click', function(event) {
         count++;
         if (count === 1) {
             // Assign first guess
-            firstGuess = clicked.dataset.name
-            clicked.classList.add('selected')
+            firstGuess = clicked.parentNode.dataset.name
+            console.log(firstGuess)
+            clicked.parentNode.classList.add('selected')
           } else {
             // Assign second guess
-            secondGuess = clicked.dataset.name
-            clicked.classList.add('selected')
+            secondGuess = clicked.parentNode.dataset.name
+            console.log(secondGuess)
+            clicked.parentNode.classList.add('selected')
           }
-          if (firstGuess !== '' && secondGuess !== '') {
+          if (firstGuess&& secondGuess) {
             // and the first guess matches the second match...
             if (firstGuess === secondGuess) {
               //apply match css
                 setTimeout(checkMatch, 1000);
-                setTimeout(reset, 1000);
-            } else {
+            } 
                 //if they don't match, reset class
                 setTimeout(reset, 1000);
-            } 
         }
         previousTarget = clicked;
     }
