@@ -8,6 +8,19 @@
     <script defer src="./app.js"></script>
 </head>
 <body>
+    <div class="game-container">
+        <div class="controls">
+                <div class="move" id="attempts"></div>
+                <div class="time" id="timer"></div>
+        </div>
     <div class="game"></div>
+    <section class="game-state-wrapper">
+        <h2 id="lose" class="hidden">
+          Oh no! You Lose!
+        </h2>
+        <h2 id="win" class="hidden">
+          Congratulations! You Win!
+        </h2>
+    </section>
 </body>
 </html>

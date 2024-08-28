@@ -43,7 +43,13 @@ let count = 0
 let firstGuess = ''
 let secondGuess = ''
 let previousTarget = null
-
+let match = 0
+const totalMatches = cardArray.length
+const maxGuesses = 20
+let attempts = 0; //Track error attempts
+let gameover = false
+let timer;
+let timeLeft = 0;
 
 //duplicate cardArray to create a match for each card
 let gameGrid = cardArray.concat(cardArray);
@@ -54,6 +60,8 @@ gameGrid.sort(() => 0.5 - Math.random());
 //create the game board
 const game = document.querySelector('.game');
 const grid = document.createElement('section');
+const loseMessage = document.getElementById('lose');
+const winMessage = document.getElementById('win');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
@@ -100,11 +108,18 @@ const checkMatch = () => {
     selected.forEach(card => {
         card.classList.add('match');
     });
+    match++;
+    if (match === totalMatches) {
+        clearInterval(timer);
+        //show win message
+        winMessage.classList.remove('hidden');
+        gameover = true;
+    }
+    reset();
 };
 
 
 const reset = () => {
-
     firstGuess = '';
     secondGuess = '';
     count = 0;
@@ -116,6 +131,21 @@ const reset = () => {
         card.classList.remove('selected');
     });
 };  
+
+
+//Timer
+const startTimer = () => {
+    timer = setInterval(() => {
+        timeLeft++;
+        document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
+        if (timeLeft >= 90) {
+            clearInterval(timer);
+            loseMessage.classList.remove('hidden');
+            reset();
+        }
+    }, 1000);
+};
+
 
 
 //----------------------------------------------------------Event Listener----------------------------------------------------------
@@ -134,12 +164,12 @@ grid.addEventListener('click', function(event) {
         if (count === 1) {
             // Assign first guess
             firstGuess = clicked.parentNode.dataset.name
-            console.log(firstGuess)
+            //console.log(firstGuess)
             clicked.parentNode.classList.add('selected')
           } else {
             // Assign second guess
             secondGuess = clicked.parentNode.dataset.name
-            console.log(secondGuess)
+            //console.log(secondGuess)
             clicked.parentNode.classList.add('selected')
           }
           if (firstGuess&& secondGuess) {
@@ -147,10 +177,22 @@ grid.addEventListener('click', function(event) {
             if (firstGuess === secondGuess) {
               //apply match css
                 setTimeout(checkMatch, 1000);
-            } 
+            } else {
                 //if they don't match, reset class
+                attempts++;
+                document.getElementById('attempts').innerHTML = `Attempts: ${attempts}`;
                 setTimeout(reset, 1000);
+
+                if (attempts >= maxGuesses) {
+                    clearInterval(timer);
+                    loseMessage.classList.remove('hidden');
+                    gameover = true;
+                    reset();
+                }
+            }
         }
         previousTarget = clicked;
     }
 });
+
+startTimer();
