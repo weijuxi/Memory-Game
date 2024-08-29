@@ -45,7 +45,7 @@ let secondGuess = ''
 let previousTarget = null
 let match = 0
 const totalMatches = cardArray.length
-const maxGuesses = 10
+const maxGuesses = 20
 let attempts = 0; //Track error attempts
 let gameover = false
 let timer;
@@ -63,8 +63,7 @@ const loseMessage = document.getElementById('lose');
 const winMessage = document.getElementById('win');
 const startButton = document.getElementById('startButton');
 const resetButton = document.getElementById('resetButton');
-grid.setAttribute('class', 'grid');
-game.appendChild(grid);
+
 
 
 //show cardArray 
@@ -82,6 +81,8 @@ game.appendChild(grid);
 
 // foreach card in grid
 const createCard = () => {
+    grid.setAttribute('class', 'grid');
+    game.appendChild(grid);
     grid.innerHTML = '';
 
     gameGrid.sort(() => 0.5 - Math.random());
@@ -111,16 +112,18 @@ const createCard = () => {
 
 const checkMatch = () => {
     let selected = document.querySelectorAll('.selected');
-    selected.forEach(card => {
-        card.classList.add('match');
-    });
-    match++;
-    if (match === totalMatches) {
-        clearInterval(timer);
-        //show win message
-        winMessage.classList.remove('hidden');
-        gameover = true;
-        resetButton.classList.remove('hidden');
+    if (selected.length === 2 && selected[0].dataset.name === selected[1].dataset.name) {
+        selected.forEach(card => {
+            card.classList.add('match');
+        });
+        match++;
+        if (match === totalMatches) {
+            clearInterval(timer);
+            //show win message
+            winMessage.classList.remove('hidden');
+            gameover = true;
+            resetButton.classList.remove('hidden');
+        }
     }
     reset();
 };
@@ -131,7 +134,6 @@ const reset = () => {
     secondGuess = '';
     count = 0;
     previousTarget = null;
-    gameover = false;
 
     //remove selected class from selected cards
     let selected = document.querySelectorAll('.selected');
@@ -146,10 +148,10 @@ const startTimer = () => {
     timer = setInterval(() => {
         timeLeft++;
         document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
-        if (timeLeft >= 90) {
+        if (timeLeft >= 60) {
+            gameover = true;
             clearInterval(timer);
             loseMessage.classList.remove('hidden');
-            reset();
             resetButton.classList.remove('hidden');
         }
     }, 1000);
@@ -198,7 +200,7 @@ grid.addEventListener('click', function(event) {
                     loseMessage.classList.remove('hidden');
                     gameover = true;
                     resetButton.classList.remove('hidden');
-                    reset();
+                    //reset();
                 }
             }
         }
@@ -210,12 +212,13 @@ grid.addEventListener('click', function(event) {
 startButton.addEventListener('click', () => {
     timeLeft = 0;    
     attempts = 0;
+    match = 0;
     document.getElementById('attempts').innerHTML = `Attempts: ${attempts}`;
     document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
     startTimer();
     createCard();
     startButton.classList.add('hidden');
-
+    gameover = false;
 });
 
 //Reset Button
@@ -228,7 +231,12 @@ resetButton.addEventListener('click', () => {
     clearInterval(timer);
     timeLeft = 0;
     attempts = 0;
-    grid.innerHTML = '';
+    match = 0;
     document.getElementById('attempts').innerHTML = `Attempts: ${attempts}`;
     document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
+    //remove all cards
+    grid.innerHTML = '';
+    //reset game
+    createCard();
+    gameover = false;
 });
