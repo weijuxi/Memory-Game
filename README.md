@@ -7,7 +7,7 @@ I chose this game because it’s a classic way to exercise memory skills and is 
 
 ## Getting Started
 ### Play the Game
-You can play the Memory Game here: [Play Game](#) 
+You can play the Memory Game here: [Play Game](https://weijuxi.github.io/Memory-Game/) 
 
 ### Instructions
 1. Click on the **Start Game** button to begin.
