@@ -45,7 +45,7 @@ let secondGuess = ''
 let previousTarget = null
 let match = 0
 const totalMatches = cardArray.length
-const maxGuesses = 20
+const maxGuesses = 10
 let attempts = 0; //Track error attempts
 let gameover = false
 let timer;
@@ -54,7 +54,6 @@ let timeLeft = 0;
 //duplicate cardArray to create a match for each card
 let gameGrid = cardArray.concat(cardArray);
 //randomize the game grid on each load
-gameGrid.sort(() => 0.5 - Math.random());
 
 
 //create the game board
@@ -62,6 +61,8 @@ const game = document.querySelector('.game');
 const grid = document.createElement('section');
 const loseMessage = document.getElementById('lose');
 const winMessage = document.getElementById('win');
+const startButton = document.getElementById('startButton');
+const resetButton = document.getElementById('resetButton');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
@@ -80,27 +81,32 @@ game.appendChild(grid);
 
 
 // foreach card in grid
-gameGrid.forEach(item => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.dataset.name = item.name;
+const createCard = () => {
+    grid.innerHTML = '';
 
-
-    //Add front of card
-    const front = document.createElement('div');
-    front.classList.add('front');
-
-
-    //Add back of card
-    const back = document.createElement('div');
-    back.classList.add('back');
-    card.style.backgroundImage = `url(${item.img})`;
-
-
-    grid.appendChild(card);
-    card.appendChild(front);
-    card.appendChild(back);
-});
+    gameGrid.sort(() => 0.5 - Math.random());
+    gameGrid.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.name = item.name;
+    
+    
+        //Add front of card
+        const front = document.createElement('div');
+        front.classList.add('front');
+    
+    
+        //Add back of card
+        const back = document.createElement('div');
+        back.classList.add('back');
+        card.style.backgroundImage = `url(${item.img})`;
+    
+    
+        grid.appendChild(card);
+        card.appendChild(front);
+        card.appendChild(back);
+    });
+};
 
 
 const checkMatch = () => {
@@ -114,6 +120,7 @@ const checkMatch = () => {
         //show win message
         winMessage.classList.remove('hidden');
         gameover = true;
+        resetButton.classList.remove('hidden');
     }
     reset();
 };
@@ -124,6 +131,7 @@ const reset = () => {
     secondGuess = '';
     count = 0;
     previousTarget = null;
+    gameover = false;
 
     //remove selected class from selected cards
     let selected = document.querySelectorAll('.selected');
@@ -142,17 +150,19 @@ const startTimer = () => {
             clearInterval(timer);
             loseMessage.classList.remove('hidden');
             reset();
+            resetButton.classList.remove('hidden');
         }
     }, 1000);
 };
-
 
 
 //----------------------------------------------------------Event Listener----------------------------------------------------------
 //add event listener to each card
 grid.addEventListener('click', function(event) {
     let clicked = event.target;
-
+    if (gameover) {
+        return;
+    }
     //only select cards
     if(clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected') || clicked.parentNode.classList.contains('match')) {
         return;
@@ -187,6 +197,7 @@ grid.addEventListener('click', function(event) {
                     clearInterval(timer);
                     loseMessage.classList.remove('hidden');
                     gameover = true;
+                    resetButton.classList.remove('hidden');
                     reset();
                 }
             }
@@ -195,4 +206,29 @@ grid.addEventListener('click', function(event) {
     }
 });
 
-startTimer();
+//Start Button
+startButton.addEventListener('click', () => {
+    timeLeft = 0;    
+    attempts = 0;
+    document.getElementById('attempts').innerHTML = `Attempts: ${attempts}`;
+    document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
+    startTimer();
+    createCard();
+    startButton.classList.add('hidden');
+
+});
+
+//Reset Button
+resetButton.addEventListener('click', () => {
+    winMessage.classList.add('hidden');
+    loseMessage.classList.add('hidden');
+    startButton.classList.remove('hidden');
+    resetButton.classList.add('hidden');
+    // clear the control  
+    clearInterval(timer);
+    timeLeft = 0;
+    attempts = 0;
+    grid.innerHTML = '';
+    document.getElementById('attempts').innerHTML = `Attempts: ${attempts}`;
+    document.getElementById('timer').innerHTML = `Time: ${timeLeft}`;
+});
