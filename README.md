@@ -7,7 +7,7 @@ I chose this game because it’s a classic way to exercise memory skills and is 
 
 ## Getting Started
 ### Play the Game
-You can play the Memory Game here: [Deployed Game Link](#) 
+You can play the Memory Game here: [Play Game](#) 
 
 ### Instructions
 1. Click on the **Start Game** button to begin.
@@ -17,12 +17,10 @@ You can play the Memory Game here: [Deployed Game Link](#)
 5. If the timer runs out or you exceed the maximum attempts, you lose the game.
 6. Use the **Reset Game** button to restart the game at any time.
 
-### Planning Materials
-You can find the planning documents for this game [here](https://plantsvszombies.fandom.com/wiki/Plants_vs._Zombies/Gallery#Plants).
 
 ## Attributions
-- Images for the cards were sourced from [image source](#).
-- JavaScript game logic and CSS styles were inspired by tutorials and resources from [specific tutorial or resource](#).
+- Images for the cards were sourced from [image source](https://plantsvszombies.fandom.com/wiki/Plants_vs._Zombies/Gallery#Plants).
+- JavaScript game logic and CSS styles were inspired by tutorials and resources from [specific tutorial or resource](https://www.taniarascia.com/how-to-create-a-memory-game-super-mario-with-plain-javascript/).
 
 ## Technologies Used
 - **JavaScript**: For implementing the game logic and interactivity.
