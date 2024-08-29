@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    background-image: url('images/bg.png');
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +114,7 @@ button:hover {
 .instructions {
   margin-top: 20px;
   font-size: 14px;
-  color: #666;
+  color: #333;
   text-align: center;
 }
 
