@@ -53,7 +53,6 @@ let timeLeft = 0;
 
 //duplicate cardArray to create a match for each card
 let gameGrid = cardArray.concat(cardArray);
-//randomize the game grid on each load
 
 
 //create the game board
@@ -65,18 +64,6 @@ const startButton = document.getElementById('startButton');
 const resetButton = document.getElementById('resetButton');
 
 
-
-//show cardArray 
-// cardArray.forEach(item => {
-//     const card = document.createElement('div');
-//     card.classList.add('card');
-//     card.dataset.name = item.name;
-
-//     //Add back of card
-//     card.style.backgroundImage = `url(${item.img})`;
-
-//     grid.appendChild(card);
-// });
 
 
 // foreach card in grid
@@ -176,12 +163,10 @@ grid.addEventListener('click', function(event) {
         if (count === 1) {
             // Assign first guess
             firstGuess = clicked.parentNode.dataset.name
-            //console.log(firstGuess)
             clicked.parentNode.classList.add('selected')
           } else {
             // Assign second guess
             secondGuess = clicked.parentNode.dataset.name
-            //console.log(secondGuess)
             clicked.parentNode.classList.add('selected')
           }
           if (firstGuess&& secondGuess) {
@@ -200,7 +185,6 @@ grid.addEventListener('click', function(event) {
                     loseMessage.classList.remove('hidden');
                     gameover = true;
                     resetButton.classList.remove('hidden');
-                    //reset();
                 }
             }
         }
