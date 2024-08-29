@@ -109,3 +109,23 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.instructions {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.instructions p {
+  margin-bottom: 10px;
+}
+
+.instructions p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.instructions p a:hover {
+  text-decoration: underline;
+}
