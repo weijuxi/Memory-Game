@@ -45,7 +45,7 @@ let secondGuess = ''
 let previousTarget = null
 let match = 0
 const totalMatches = cardArray.length
-const maxGuesses = 20
+const maxGuesses = 10
 let attempts = 0; //Track error attempts
 let gameover = false
 let timer;
@@ -238,5 +238,4 @@ resetButton.addEventListener('click', () => {
     grid.innerHTML = '';
     //reset game
     createCard();
-    gameover = false;
 });
