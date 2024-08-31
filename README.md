@@ -1,7 +1,7 @@
 # Memory Game
-
+![Memory Game Picture](https://i.imgur.com/FysJzfo.png)
 ## Description
-The Memory Game, also known as the Concentration card game, is a simple yet challenging game designed to test your memory. Players are presented with a grid of cards, each hiding an image. The objective is to match pairs of identical cards by remembering their positions on the board. The game ends when all pairs are matched, or the player runs out of attempts.
+The Memory Game, also known as the Concentration card game, is a simple yet challenging game designed to test your memory. Players are presented with a grid of cards, each hiding an image. The goal is to match pairs of identical cards by remembering their positions on the board. The game ends when all pairs are matched, or the player runs out of attempts.
 
 I chose this game because it’s a classic way to exercise memory skills and is both fun and educational. Developing this game allowed me to explore core web development technologies like JavaScript, HTML, and CSS, while implementing game logic and user interaction in a browser-based environment.
 
