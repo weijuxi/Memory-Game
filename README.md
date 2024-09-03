@@ -20,7 +20,7 @@ You can play the Memory Game here: [Play Game](https://weijuxi.github.io/Memory-
 
 ## Attributions
 - Images for the cards were sourced from [image source](https://plantsvszombies.fandom.com/wiki/Plants_vs._Zombies/Gallery#Plants).
-- JavaScript game logic and CSS styles were inspired by tutorials and resources from [specific tutorial or resource](https://www.taniarascia.com/how-to-create-a-memory-game-super-mario-with-plain-javascript/).
+- JavaScript game logic and CSS styles were inspired by tutorial from [specific tutorial or resource](https://www.taniarascia.com/how-to-create-a-memory-game-super-mario-with-plain-javascript/).
 
 ## Technologies Used
 - **JavaScript**: For implementing the game logic and interactivity.
